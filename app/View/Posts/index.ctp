@@ -18,6 +18,11 @@
         </td>
         <td>
             <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?>
+            <?php echo $this->Form->postLink(
+                'Delete',
+                array('action' => 'delete', $post['Post']['id']),
+                array('confirm' => 'Are you sure?'));
+            ?>
         </td>
         <td><?php echo $post['Post']['created']; ?></td>
     </tr>
