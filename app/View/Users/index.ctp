@@ -17,6 +17,11 @@
         </td>
         <td>
             <?php echo $this->Html->link('Edit', array('action' => 'edit', $user['User']['id'])); ?>
+            <?php echo $this->Form->postLink(
+                'Delete',
+                array('action' => 'delete', $user['User']['id']),
+                array('confirm' => 'Are you sure?'));
+            ?>
         </td>
         <td><?php echo $user['User']['created']; ?></td>
     <?php endforeach; ?>
