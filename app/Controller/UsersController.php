@@ -4,6 +4,26 @@ class UsersController extends AppController {
     public $helpers = array('Html', 'Form', 'Session');
     public $components = array('Session');
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        // ユーザー自身による登録とログアウトを許可する
+        $this->Auth->allow('add', 'logout');
+    }
+
+    public function login() {
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                $this->redirect($this->Auth->redirect());
+            } else {
+                $this->Session->setFlash(__('Invalid username or password, try again'));
+            }
+        }
+    }
+
+    public function logout() {
+        $this->redirect($this->Auth->logout());
+    }
+
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
