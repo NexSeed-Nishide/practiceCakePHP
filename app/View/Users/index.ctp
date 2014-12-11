@@ -1,4 +1,8 @@
 <h1>Users List</h1>
+<?php echo $this->Html->link(
+    'Add User',
+    array('controller' => 'users', 'action' => 'add')
+); ?>
 <table>
     <tr>
         <th>Id</th>
